@@ -1,2 +1,10 @@
 __pycache__
 .*.swp
+Pipfile
+Pipfile.lock
+tyilo-SWEA18/*
+!tyilo-SWEA18/grading
+!tyilo-SWEA18/grading.py
+tyilo-SWEA19/*
+!tyilo-SWEA19/grading
+!tyilo-SWEA19/grading.py

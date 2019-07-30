@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+cd ~/repos/bbfetch/tyilo-SWEA19
+pipenv run python grading.py "$@"
