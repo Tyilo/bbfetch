@@ -242,6 +242,11 @@ class Grading(blackboard.Serializable):
                           self.gradebook.students.values())
         students = sorted(students, key=self.get_student_ordering)
         rows = self.get_gradebook_cells(columns, students)
+
+        print('Total groups:', len(set(row[2] for row in rows[1:])))
+        print('Total students:', len(rows[1:]))
+        print()
+
         col_widths = [0] * len(columns)
         for row in rows:
             for i, cell in enumerate(row):
