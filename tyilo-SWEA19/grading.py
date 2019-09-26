@@ -106,7 +106,11 @@ class Grading(blackboard.grading.Grading):
         scoring = self.get_excel_fields(excel_path, ['Submission', 'Score'])
         assert scoring['Submission'] in {'Yes', 'No'}
 
-        score = int(scoring['Score']) if scoring['Submission'] == 'Yes' else 0
+        score = int(scoring['Score'])
+        if scoring['Submission'] == 'No':
+            if score != 0:
+                print(f'WARNING: Score {score} with pass=No in {excel_path}', file=sys.stderr)
+            score = 0
 
         pdf_filename = self.soffice_convert(excel_path, 'pdf')
         return score, pdf_filename
