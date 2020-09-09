@@ -380,17 +380,17 @@ class Grading(blackboard.Serializable):
                                 '%s (%s)' % (group_name, attempt.id))
 
         else:
+            group_number = None
+            class_name = None
             group_name = attempt.group_name
             if group_name:
                 group_parts = group_name.split()
                 if group_parts[0] == 'Gruppe':
-                    class_name = group_name.split()[1]
-                    group_number = group_name.split()[3]
+                    class_name = group_parts[1]
+                    group_number = group_parts[3]
                 elif group_parts[0] == 'Hold' and group_parts[2] == '-' and group_parts[3] == 'Gruppe':
-                    class_name = group_name.split()[1]
-                    group_number = group_name.split()[4]
-            else:
-                class_name = group_number = None
+                    class_name = group_parts[1]
+                    group_number = group_parts[4]
 
             attempt_id = re.sub(r'_(.*)_1', r'\1', attempt.id)
             assignment = self.get_assignment_name_display(attempt.assignment)
