@@ -392,12 +392,14 @@ class Grading(blackboard.Serializable):
                     class_name = group_parts[1]
                     group_number = group_parts[4]
 
+            group_display = self.get_student_group_display(attempt.student)
+
             attempt_id = re.sub(r'_(.*)_1', r'\1', attempt.id)
             assignment = self.get_assignment_name_display(attempt.assignment)
 
             return os.path.expanduser(self.attempt_directory_name.format(
                 assignment=assignment,
-                class_name=class_name, group=group_number, id=attempt_id))
+                class_name=class_name, group=group_number, group_display=group_display, id=attempt_id))
 
     def download_attempt_files(self, attempt):
         assert isinstance(attempt, Attempt)
